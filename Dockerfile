@@ -18,10 +18,8 @@ RUN apt-get update && apt-get install -y locales && \
 
 ENV LC_ALL ru_RU.UTF-8
 ENV LANG ru_RU.UTF-8
-COPY entrypoint.sh /code/entrypoint.sh
-RUN chmod +x /code/entrypoint.sh
+
 
 EXPOSE 8000
 
-ENTRYPOINT ["/code/entrypoint.sh"]
-#CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

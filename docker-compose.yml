@@ -14,23 +14,6 @@ services:
       - net
     container_name: auth
 
-#  nginx:
-#    container_name: nginx
-#    restart: always
-#    image: "nginx:latest"
-#    ports:
-#      - "80:80"
-#    volumes:
-#      - "./nginx.conf:/etc/nginx/conf.d/default.conf"
-#      - "./frontend/static/:/www/data/static/"
-#      - "./frontend/templates/:/www/data/templates/"
-#      - "./media:/www/data/media"
-#    networks:
-#      - net
-#    depends_on:
-#      - megano
-#    #command: ["sh", "-c", "chown -R www-data:www-data /www/data/templates/drf-yasg/swagger.json && nginx -g 'daemon off;'"]
-#    command: ["sh", "-c", "touch /www/data/templates/drf-yasg/swagger.json && chown -R www-data:www-data /www/data/templates/drf-yasg/swagger.json && nginx -g 'daemon off;'"]
 
   postgres:
     image: "postgres"
@@ -63,4 +46,3 @@ networks:
 
 volumes:
   db_data:
-#  frontend:
