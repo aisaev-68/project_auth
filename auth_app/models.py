@@ -2,6 +2,7 @@ from django.db import models
 import random
 import string
 
+
 class UserProfile(models.Model):
     phone_number = models.CharField(max_length=15, unique=True)
     authorized = models.BooleanField(default=False)

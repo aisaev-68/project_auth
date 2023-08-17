@@ -8,11 +8,26 @@ from .models import UserProfile
 
 
 def generate_invite_code():
+    """
+    Генерирует случайный инвайт-код.
+    Возвращает:
+        str: Сгенерированный случайный инвайт-код.
+    """
     characters = string.digits + string.ascii_uppercase
     return ''.join(random.choice(characters) for _ in range(6))
 
 
 class AuthorizationPhoneView(View):
+    """
+    Обрабатывает авторизацию по номеру телефона.
+    GET метод:
+        Отображает форму для ввода номера телефона.
+    POST метод:
+        Обрабатывает отправку формы с номером телефона. Генерирует код
+        активации, имитирует задержку отправки SMS, создает или обновляет
+        профиль пользователя с указанным номером телефона и сгенерированными
+        кодами активации и инвайта. Перенаправляет на страницу верификации.
+    """
     template_name = 'auth_app/authorize_phone.html'
 
     def get(self, request):
@@ -40,6 +55,18 @@ class AuthorizationPhoneView(View):
 
 
 class VerifyCodeView(View):
+    """
+    Обрабатывает верификацию кодов активации.
+    GET метод:
+        Отображает форму для ввода кода активации. Отображает код активации
+        и список телефонных номеров, приглашенных пользователем.
+    POST метод:
+        Обрабатывает отправку формы с кодом активации. Сравнивает введенный
+        код активации с сохраненным кодом. Если коды совпадают, помечает
+        пользователя как авторизованного и отображает страницу профиля
+        пользователя с списком телефонных номеров, приглашенных пользователем.
+    """
+
     template_name = 'auth_app/verify_code.html'
 
     def get(self, request):
@@ -66,11 +93,22 @@ class VerifyCodeView(View):
         if user and activation_code == request.session.get('activation_code'):
             user.authorized = True
             user.save()
-            return render(request, 'auth_app/profile.html', context={'user': user, 'referred_phone_numbers': user.referred_users.all()})
+            return render(request, 'auth_app/profile.html',
+                          context={'user': user, 'referred_phone_numbers': user.referred_users.all()})
         return redirect('authorize_phone')
 
 
 class InputInviteCodeView(View):
+    """
+    Обрабатывает ввод инвайт-кода приглашения.
+
+    POST метод:
+        Обрабатывает отправку формы с инвайт-кодом. Получает профиль пользователя
+        и введенный инвайт-код. Если инвайт-код действителен, связывает
+        пользователя с пригласившим пользователем, удаляет инвайт-код пользователя
+        и добавляет пригласившего пользователя в список приглашенных. Перенаправляет
+        на страницу профиля пользователя.
+    """
     template_name = 'auth_app/profile.html'
 
     def post(self, request):
