@@ -34,6 +34,7 @@ urlpatterns =[
     path('authorize/', AuthorizationPhoneView.as_view(), name='authorize_phone'),
     path('verify/', VerifyCodeView.as_view(), name='verify_code'),
     path('input_invite_code/', InputInviteCodeView.as_view(), name='input_invite_code'),
+    path('profile/', InputInviteCodeView.as_view(), name='profile'),
 ]
 
 if settings.DEBUG:

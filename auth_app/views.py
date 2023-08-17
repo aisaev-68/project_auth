@@ -43,10 +43,16 @@ class VerifyCodeView(View):
     template_name = 'auth_app/verify_code.html'
 
     def get(self, request):
+        user = UserProfile.objects.get(phone_number=request.session.get('phone_number'))
+        referred_users = user.referred_users.all()
+        referred_phone_numbers = [user.phone_number for user in referred_users]
         return render(
             request,
             self.template_name,
-            context={'activation_code': request.session['activation_code']}
+            context={
+                'activation_code': request.session['activation_code'],
+                'referred_phone_numbers': referred_phone_numbers
+            }
         )
 
     def post(self, request):
@@ -60,7 +66,7 @@ class VerifyCodeView(View):
         if user and activation_code == request.session.get('activation_code'):
             user.authorized = True
             user.save()
-            return redirect('auth_app:api_user_profile')
+            return render(request, 'auth_app/profile.html', context={'user': user, 'referred_phone_numbers': user.referred_users.all()})
         return redirect('authorize_phone')
 
 
@@ -76,7 +82,6 @@ class InputInviteCodeView(View):
             user.invite_code = None  # Очистка собственного инвайт-кода пользователя
             user.save()
             user.referred_users.add(invited_user)
-            return redirect('auth_app:api_user_profile')
+            return redirect('profile')
         except UserProfile.DoesNotExist:
             return redirect('api_user_profile', error_message='Неверный инвайт-код')
-

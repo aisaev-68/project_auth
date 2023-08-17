@@ -19,8 +19,13 @@
         <input type="text" name="invite_code" id="invite_code">
         <button type="submit">Активировать инвайт-код</button>
     </form>
+    <h1>Referred phone numbers</h1>
+    <ul>
+        {% for phone in referred_phone_numbers %}
+            <li>{{ phone }}</li>
+        {% endfor %}
+    </ul>
 
-    <a href="{% url 'auth_app:api_referral_list' %}">View Referral List</a>
 </body>
 </html>
 
