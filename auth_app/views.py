@@ -1,12 +1,11 @@
 from django.shortcuts import render, redirect
 from django.views import View
-
-
 import random
 import string
 import time
+
 from .models import UserProfile
-from .serializers import UserProfileSerializer
+
 
 def generate_invite_code():
     characters = string.digits + string.ascii_uppercase
