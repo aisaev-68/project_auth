@@ -33,7 +33,7 @@ class AuthorizationPhoneView(View):
         user, created = UserProfile.objects.get_or_create(phone_number=phone_number)
         if created:
             user.invite_code = invite_code
-            # user.activation_code = activation_code
+            user.activation_code = activation_code
             user.save()
 
         request.session['phone_number'] = phone_number
@@ -92,12 +92,15 @@ class InputInviteCodeView(View):
     template_name = 'auth_app/profile.html'
 
     def post(self, request):
-        user = UserProfile.objects.get(phone_number=request.session['phone_number'])
+        user = UserProfile.objects.get(phone_number=request.session.get('phone_number'))
         invite_code = request.POST.get('invite_code')
         try:
             invited_user = UserProfile.objects.get(invite_code=invite_code)
             user.referrer = invited_user
+            user.invite_code = None  # Очистка собственного инвайт-кода пользователя
             user.save()
-            return render(request, self.template_name, {'user': user})
+            user.referred_users.add(invited_user)
+            return redirect('auth_app:api_user_profile')
         except UserProfile.DoesNotExist:
-            return render(request, self.template_name, {'user': user, 'error_message': 'Неверный инвайт-код'})
+            return redirect('api_user_profile', error_message='Неверный инвайт-код')
+

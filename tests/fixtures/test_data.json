@@ -6,7 +6,7 @@
       "phone_number": "1234567890",
       "authorized": true,
       "activation_code": "1234",
-      "invite_code": "ABC123",
+      "invite_code": "abcdef",
       "referrer": null,
       "referred_users": []
     }
@@ -18,8 +18,8 @@
       "phone_number": "9876543210",
       "authorized": true,
       "activation_code": "5678",
-      "invite_code": "XYZ456",
-      "referrer": 1,
+      "invite_code": "ghijkl",
+      "referrer": null,
       "referred_users": []
     }
   },
@@ -28,11 +28,96 @@
     "pk": 3,
     "fields": {
       "phone_number": "5555555555",
-      "authorized": false,
-      "activation_code": "4321",
-      "invite_code": null,
-      "referrer": 2,
+      "authorized": true,
+      "activation_code": "9999",
+      "invite_code": "mnopqr",
+      "referrer": null,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 4,
+    "fields": {
+      "phone_number": "1111111111",
+      "authorized": true,
+      "activation_code": "2222",
+      "invite_code": "stuvwx",
+      "referrer": null,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 5,
+    "fields": {
+      "phone_number": "2222222222",
+      "authorized": true,
+      "activation_code": "3333",
+      "invite_code": "yzabcd",
+      "referrer": null,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 6,
+    "fields": {
+      "phone_number": "3333333333",
+      "authorized": true,
+      "activation_code": "4444",
+      "invite_code": "efghij",
+      "referrer": null,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 7,
+    "fields": {
+      "phone_number": "4444444444",
+      "authorized": true,
+      "activation_code": "5555",
+      "invite_code": "klmnop",
+      "referrer": null,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 8,
+    "fields": {
+      "phone_number": "6666666666",
+      "authorized": true,
+      "activation_code": "7777",
+      "invite_code": "qrstuv",
+      "referrer": null,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 9,
+    "fields": {
+      "phone_number": "7777777777",
+      "authorized": true,
+      "activation_code": "8888",
+      "invite_code": "wxyzab",
+      "referrer": null,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 10,
+    "fields": {
+      "phone_number": "8888888888",
+      "authorized": true,
+      "activation_code": "9999",
+      "invite_code": "cdefgh",
+      "referrer": null,
       "referred_users": []
     }
   }
 ]
+
