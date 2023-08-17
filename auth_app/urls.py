@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import UserProfileAPI, ReferralListAPI
+from .api import UserProfileAPI, ReferralListAPI
 
 
 
