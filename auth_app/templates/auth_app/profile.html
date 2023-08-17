@@ -1,9 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>User Profile</title>
-</head>
-<body>
+{% extends "auth_app/base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block section %}
     <h1>User Profile</h1>
     {% if user %}
     <p>Phone Number: {{ user.phone_number }}</p>
@@ -25,8 +26,6 @@
             <li>{{ phone }}</li>
         {% endfor %}
     </ul>
-
-</body>
-</html>
+{% endblock %}
 
 

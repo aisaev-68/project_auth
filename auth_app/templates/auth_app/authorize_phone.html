@@ -1,10 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Authorization</title>
-</head>
-<body>
+{% extends "auth_app/base.html" %}
+
+{% block title %}
+Authorization phone
+{% endblock %}
+
+{% block section %}
     <h1>Authorization</h1>
     <form method="post">
         {% csrf_token %}
@@ -12,5 +12,4 @@
         <input type="text" id="phone_number" name="phone_number"><br>
         <button type="submit">Request Code</button>
     </form>
-</body>
-</html>
+{% endblock %}
