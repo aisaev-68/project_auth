@@ -1,4 +1,4 @@
-## Интернет-магазин Мегано
+## Реферальная система
 
 ### Переменные среды
 Переименовать файл .env.example в .env и установите свои данные
@@ -14,11 +14,16 @@ docker-compose up -d --build # режим prod
 docker-compose exec megano python manage.py dumpdata product > tests/fixtures/product-fixtures.json
 ```
 
-3. Просмотр статуса службы:
+3. Тестирование:
+```
+docker-compose exec megano python manage.py test tests.test_all
+```
+
+4. Просмотр статуса службы:
 ```
 docker-compose ps -a
 ```
-4. Просмотр лога лога приложения
+5. Просмотр лога лога приложения
 ```
 docker-compose logs megano
 ```
@@ -46,8 +51,5 @@ docker system prune --all --volumes
 
 ### Сайт
 ```
-http://127.0.0.1:8080
+http://127.0.0.1:8000
 ```
-
-
-docker-compose exec megano python manage.py test tests.test_account
