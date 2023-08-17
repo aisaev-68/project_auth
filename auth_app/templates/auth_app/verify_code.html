@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Verification</title>
+</head>
+<body>
+    <h1>Verification</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p>Activation Code: {{ activation_code }}</p>
+        <label for="activation_code">Activation Code:</label>
+        <input type="text" id="activation_code" name="activation_code"><br>
+        <button type="submit">Verify</button>
+    </form>
+</body>
+</html>

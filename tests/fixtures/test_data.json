@@ -1,0 +1,38 @@
+[
+  {
+    "model": "auth_app.userprofile",
+    "pk": 1,
+    "fields": {
+      "phone_number": "1234567890",
+      "authorized": true,
+      "activation_code": "1234",
+      "invite_code": "ABC123",
+      "referrer": null,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 2,
+    "fields": {
+      "phone_number": "9876543210",
+      "authorized": true,
+      "activation_code": "5678",
+      "invite_code": "XYZ456",
+      "referrer": 1,
+      "referred_users": []
+    }
+  },
+  {
+    "model": "auth_app.userprofile",
+    "pk": 3,
+    "fields": {
+      "phone_number": "5555555555",
+      "authorized": false,
+      "activation_code": "4321",
+      "invite_code": null,
+      "referrer": 2,
+      "referred_users": []
+    }
+  }
+]

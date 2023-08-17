@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    {% if user %}
+    <p>Phone Number: {{ user.phone_number }}</p>
+    <p>Authorized: {{ user.authorized }}</p>
+    <p>Activation Code: {{ user.activation_code }}</p>
+    <p>Invite Code: {{ user.invite_code }}</p>
+    {% else %}
+    <p>User not found.</p>
+    {% endif %}
+    <form method="post" action="{% url 'input_invite_code' %}">
+    {% csrf_token %}
+    <label for="invite_code">Введите чужой инвайт-код:</label>
+    <input type="text" name="invite_code" id="invite_code">
+    <button type="submit">Активировать инвайт-код</button>
+    </form>
+
+    <a href="{% url 'auth_app:api_referral_list' %}">View Referral List</a>
+</body>
+</html>
+
+

@@ -1,0 +1,160 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="https://otkorobki.ru/favicon.svg" type="image/svg+xml">
+    <title>
+        {% block title %}
+        Base Title
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/normalize.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<main class="bg-info" style="min-height: 40vw;">
+    <header class="bg-dark">
+        <div class="container">
+            <div class="navbar navbar-expand-sm px-0">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-white" href="#">Global</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarScroll">
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll justify-content-between"
+                            style="--bs-scroll-height: 100px;">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'shopapp:shop_page' %}"> Главная </a>
+                            </li>
+                            {% if perms.shopapp.change_product or request.user.is_superuser %}
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle mx-3" id="Preview" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Продукты
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="Preview">
+                                    <a class="nav-link text-black" href="{% url 'shopapp:create_product' %}"> Добавить </a>
+                                    <a class="nav-link" href="{% url 'shopapp:products_list' %}"> Прайс </a>
+                                </div>
+                            </li>
+
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" id="Preview-order" href="#" role="button"
+                                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Заказы
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-dark" aria-labelledby="Preview-order">
+                                    <a class="dropdown-item" href="{% url 'shopapp:create_order' %}">Добавить </a>
+                                    <a class="dropdown-item" href="{% url 'shopapp:orders_user' pk=request.user.pk %}">
+                                        Просмотреть заказы
+                                    </a>
+                                </div>
+                            </li>
+                            <li class="nav-item"><a class="nav-link mx-3" href="{% url 'shopapp:contact' %}">
+                                Контакты </a>
+                            </li>
+                            {% endif %}
+                        </ul>
+                        {% if perms.shopapp.change_product or request.user.is_superuser %}
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'accounts:profile' %}">
+                                    <i class="fa fa-user fa-2x text-primary"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll align-items-center">
+                            <li class="nav-item mx-2"><a href="{% url 'logout' %}"
+                                                    class="btn btn-primary bg-danger text-white me-3">
+                                <i class="fa fa-user"></i> Log Out </a>
+                            </li>
+                            <li class="nav-item fa fa-shopping-basket fa-2x"
+                                style="color: white; opacity: 1.0; text-align: center"><span class="px-2"
+                                                                                             style="font-size: 16px;">0 ₽</span>
+                            </li>
+                        </ul>
+                        {% else %}
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll align-items-center" style="">
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shopapp:products_list' %}">
+                                Прайс </a></li>
+                            <li class="nav-item"><a class="nav-link" href="#"> Блог </a></li>
+                            <li class="nav-item"><a class="nav-link" href="{% url 'shopapp:contact' %}"> Контакты </a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll align-items-center">
+                            <li class="nav-item" style="margin-left: 5vw;">
+                                <a class="btn btn-primary text-white me-3" href="{% url 'login' %}">
+                                    <i class="fa fa-user"></i>
+                                    Log In
+                                </a>
+                            </li>
+                            <li class="nav-item active" style="margin-left: 1vw; margin-right: 1vw;">
+                                <a class="btn btn-primary text-white active me-3" href="{% url 'register' %}">
+                                    <i class="fa fa-sign-in"></i>
+                                    Sign Up
+                                </a>
+                            </li>
+                            <li class="nav-item fa fa-shopping-basket fa-2x"
+                                style="color: white; opacity: 1.0; text-align: center"><span class="px-2"
+                                                                                             style="font-size: 16px;">100 ₽</span>
+                            </li>
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="section-product container d-flex flex-column">
+        {% block section %}
+        Base section
+        {% endblock %}
+    </section>
+</main>
+<footer class="bg-dark">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12 text-center mt-2">
+                <h2 class="footer-heading"><a href="#" class="logo text-white">Global</a></h2>
+                <div class="menu mb-3">
+                    <a class="text-white" href="#">Главная</a>
+                    <a class="text-white mx-3" href="#">Прайс</a>
+                    <a class="me-3 text-white" href="#">Блог</a>
+                    <a class="text-white" href="#">Контакты</a>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <a class="" href="">
+                        <i class="fa fa-twitter fa-2x"></i></a>
+
+                    <a class="" href="">
+                        <i class="fa fa-facebook fa-2x px-3"></i></a>
+
+                    <a class="" href="">
+                        <i class="fa fa-instagram fa-2x"></i></a>
+
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-12 text-center">
+                    <p class="copyright">
+                        <a href="" target="_blank">@Global2023</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+</html>

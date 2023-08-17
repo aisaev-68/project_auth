@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authorization</title>
+</head>
+<body>
+    <h1>Authorization</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="phone_number">Phone Number:</label>
+        <input type="text" id="phone_number" name="phone_number"><br>
+        <button type="submit">Request Code</button>
+    </form>
+</body>
+</html>
