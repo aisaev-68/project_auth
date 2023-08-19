@@ -11,12 +11,12 @@ docker-compose up -d --build # режим prod
 ```
 2. Для выгрузки фикстур с командной строки наберите:
 ```
-docker-compose exec megano python manage.py dumpdata product > tests/fixtures/product-fixtures.json
+docker-compose exec auth python manage.py dumpdata auth_app > tests/fixtures/data-fixtures.json
 ```
 
 3. Тестирование:
 ```
-docker-compose exec megano python manage.py test tests.test_all
+docker-compose exec auth python manage.py test tests.test_all
 ```
 
 4. Просмотр статуса службы:
@@ -25,7 +25,7 @@ docker-compose ps -a
 ```
 5. Просмотр лога лога приложения
 ```
-docker-compose logs megano
+docker-compose logs auth
 ```
 
 ### Другие команды работы с docker
